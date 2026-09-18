@@ -1,0 +1,342 @@
+@media (max-width: 1100px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .hero {
+    height: 760px;
+  }
+
+  .heroContent {
+    width: 76vw;
+  }
+
+  .heroCard {
+    display: none;
+  }
+
+  .collectionGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .editorialImageWrap {
+    min-height: 620px;
+  }
+
+  .editorialCopy {
+    padding: 90px 7vw;
+  }
+
+  .calculatorSection,
+  .enquirySection {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .proofSection {
+    grid-template-columns: 1fr;
+  }
+
+  .ratingBlock {
+    padding-right: 0;
+    padding-bottom: 50px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 820px) {
+  .announcement {
+    padding-inline: 18px;
+    justify-content: center;
+  }
+
+  .announcement > span {
+    display: none;
+  }
+
+  .siteHeader {
+    height: 70px;
+    padding: 0 18px;
+  }
+
+  .mobileMenu {
+    top: 70px;
+    padding-inline: 20px;
+  }
+
+  .textAction,
+  .headerActions .primaryButton {
+    display: none;
+  }
+
+  .brandMark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brandText strong {
+    font-size: 15px;
+  }
+
+  .hero {
+    min-height: 710px;
+    height: 82svh;
+    max-height: 760px;
+  }
+
+  .heroOverlay {
+    background:
+      linear-gradient(90deg, rgba(10, 10, 9, 0.72), rgba(10, 10, 9, 0.24)),
+      linear-gradient(0deg, rgba(10, 10, 9, 0.72), transparent 70%);
+  }
+
+  .heroContent {
+    width: auto;
+    margin: 0 22px 54px;
+  }
+
+  .hero h1 {
+    font-size: clamp(50px, 15vw, 74px);
+  }
+
+  .heroContent > p {
+    font-size: 14px;
+  }
+
+  .heroButtons {
+    display: grid;
+  }
+
+  .heroButtons a {
+    width: 100%;
+  }
+
+  .heroMeta {
+    gap: 8px 15px;
+  }
+
+  .trustStrip {
+    padding: 8px 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trustStrip > div,
+  .trustStrip > div:first-child {
+    padding: 16px 10px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section {
+    padding: 82px 20px;
+  }
+
+  .splitHeading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sectionHeading h2 {
+    font-size: 46px;
+  }
+
+  .sectionHeading {
+    margin-bottom: 32px;
+  }
+
+  .collectionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .collectionCard {
+    min-height: 440px;
+  }
+
+  .editorialImageWrap {
+    min-height: 500px;
+  }
+
+  .editorialBadge {
+    width: 178px;
+  }
+
+  .editorialCopy {
+    padding: 78px 22px;
+  }
+
+  .editorialCopy h2 {
+    font-size: 48px;
+  }
+
+  .inspirationGrid {
+    min-height: unset;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .inspirationCard,
+  .inspirationCard.card1,
+  .inspirationCard.card2 {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 420px;
+  }
+
+  .calculatorSection {
+    padding: 78px 20px;
+  }
+
+  .calculatorIntro h2 {
+    font-size: 48px;
+  }
+
+  .inputGrid,
+  .enquiryForm .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .proofSection {
+    padding-inline: 20px;
+  }
+
+  .reviewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewCard {
+    min-height: 250px;
+  }
+
+  .showroomSection {
+    grid-template-columns: 1fr;
+  }
+
+  .showroomMap,
+  .showroomMap iframe {
+    min-height: 430px;
+  }
+
+  .showroomDetails {
+    padding: 78px 22px;
+  }
+
+  .showroomDetails h2 {
+    font-size: 48px;
+  }
+
+  .enquirySection {
+    padding: 78px 20px;
+  }
+
+  .enquiryIntro h2 {
+    font-size: 50px;
+  }
+
+  footer {
+    padding: 60px 20px 20px;
+  }
+
+  .footerBrand {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footerLinks {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footerLinks > div:last-child {
+    grid-column: 1 / 3;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .floatingWhatsapp {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroMeta span:nth-child(2) {
+    display: none;
+  }
+
+  .trustStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .trustStrip > div {
+    min-height: 58px;
+  }
+
+  .sectionHeading h2,
+  .editorialCopy h2,
+  .calculatorIntro h2,
+  .showroomDetails h2,
+  .enquiryIntro h2 {
+    font-size: 42px;
+  }
+
+  .collectionCard {
+    min-height: 390px;
+  }
+
+  .editorialImageWrap {
+    min-height: 420px;
+  }
+
+  .editorialBadge {
+    display: none;
+  }
+
+  .inspirationCard,
+  .inspirationCard.card1,
+  .inspirationCard.card2 {
+    min-height: 360px;
+  }
+
+  .calculatorCard {
+    padding: 22px;
+  }
+
+  .areaResult {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .showroomActions {
+    display: grid;
+  }
+
+  .footerLinks {
+    grid-template-columns: 1fr;
+  }
+
+  .footerLinks > div:last-child {
+    grid-column: auto;
+  }
+
+  .floatingWhatsapp span {
+    display: none;
+  }
+
+  .floatingWhatsapp {
+    width: 54px;
+    padding: 0;
+    justify-content: center;
+  }
+}
