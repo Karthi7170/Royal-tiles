@@ -12,8 +12,10 @@ Premium, mobile-first showroom website for **New Royal Tiles**, Valayampattu, Ta
 ## Experience included
 
 - Premium editorial homepage
+- Luxury espresso, champagne-gold and porcelain-ivory visual system
 - Official Royal Tiles logo integrated in header/footer/social metadata
 - Real New Royal Tiles showroom exterior used as the homepage hero
+- Dark glass navigation with gold-accent conversion actions
 - Responsive desktop/mobile navigation
 - Room-led tile collection discovery
 - WhatsApp recommendations and prefilled enquiries
