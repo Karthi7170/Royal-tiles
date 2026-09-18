@@ -4,6 +4,12 @@ export const whatsappBase = "https://wa.me/918123868746";
 export const directionsHref =
   "https://www.google.com/maps/search/?api=1&query=New+Royal+Tiles+Valayampattu+MC+Road+Tamil+Nadu+635751";
 
+export const logoUrl =
+  "https://d2ol7oe51mr4n9.cloudfront.net/user_3JFN34Qe7I15a2A1mQucztzlTZR/3361c546-b5ae-485b-8bf1-89b64083b9e3.png";
+
+export const showroomImageUrl =
+  "https://d2ol7oe51mr4n9.cloudfront.net/user_3JFN34Qe7I15a2A1mQucztzlTZR/ef23538b-ae88-453b-9cad-bfc5acc92fba.png";
+
 export function makeWhatsapp(message: string) {
   return whatsappBase + "?text=" + encodeURIComponent(message);
 }
@@ -16,6 +22,8 @@ export const businessJsonLd = {
     "Tiles showroom offering floor, wall, bathroom, kitchen, outdoor and designer tile solutions.",
   telephone: "+918123868746",
   priceRange: "₹₹",
+  image: showroomImageUrl,
+  logo: logoUrl,
   address: {
     "@type": "PostalAddress",
     streetAddress: "M C Road, Valayampattu",
