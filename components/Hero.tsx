@@ -9,7 +9,12 @@ import {
   ShieldCheck,
   Star
 } from "lucide-react";
-import { directionsHref, makeWhatsapp } from "@/lib/site";
+import {
+  directionsHref,
+  logoUrl,
+  makeWhatsapp,
+  showroomImageUrl
+} from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -17,8 +22,8 @@ export default function Hero() {
       <section className="hero" id="top">
         <img
           className="heroImage"
-          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=92"
-          alt="Premium modern interior featuring large-format tile surfaces"
+          src={showroomImageUrl}
+          alt="New Royal Tiles showroom exterior in Valayampattu, Tamil Nadu"
         />
         <div className="heroOverlay" />
 
@@ -56,7 +61,8 @@ export default function Hero() {
         </div>
 
         <div className="heroCard">
-          <span className="heroCardLabel">VISIT THE SHOWROOM</span>
+          <img className="heroCardLogo" src={logoUrl} alt="" aria-hidden="true" />
+          <span className="heroCardLabel">OUR SHOWROOM</span>
           <strong>See the finish. Feel the texture.</strong>
           <p>M C Road, Valayampattu, Tamil Nadu 635751</p>
           <div className="heroCardFooter">
