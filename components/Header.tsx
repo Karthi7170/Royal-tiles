@@ -2,7 +2,13 @@
 
 import { MapPin, Menu, MessageCircle, X } from "lucide-react";
 import { useState } from "react";
-import { directionsHref, makeWhatsapp, phoneDisplay, phoneHref } from "@/lib/site";
+import {
+  directionsHref,
+  logoUrl,
+  makeWhatsapp,
+  phoneDisplay,
+  phoneHref
+} from "@/lib/site";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +22,11 @@ export default function Header() {
 
       <header className="siteHeader">
         <a className="brand" href="#top" aria-label="New Royal Tiles home">
-          <span className="brandMark">NR</span>
+          <img
+            className="brandLogoImage"
+            src={logoUrl}
+            alt="Royal Tiles logo"
+          />
           <span className="brandText">
             <strong>NEW ROYAL</strong>
             <small>TILES</small>
