@@ -12,6 +12,8 @@ Premium, mobile-first showroom website for **New Royal Tiles**, Valayampattu, Ta
 ## Experience included
 
 - Premium editorial homepage
+- Official Royal Tiles logo integrated in header/footer/social metadata
+- Real New Royal Tiles showroom exterior used as the homepage hero
 - Responsive desktop/mobile navigation
 - Room-led tile collection discovery
 - WhatsApp recommendations and prefilled enquiries
@@ -45,4 +47,4 @@ The project is structured for Vercel deployment from the `main` branch.
 
 ## Before public launch
 
-Replace the temporary editorial room imagery with genuine New Royal Tiles showroom photos and actual product/collection photography. After a permanent domain is chosen, add the final canonical URL, Search Console verification, sitemap and the website URL to the Google Business Profile.
+The official logo and showroom exterior are now integrated. The remaining editorial room/inspiration images are temporary and should eventually be replaced with genuine product displays, tile collections, showroom interiors and completed customer projects. After a permanent domain is chosen, add the final canonical URL, Search Console verification, sitemap and the website URL to the Google Business Profile.
