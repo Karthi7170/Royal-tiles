@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <>
       <div className="announcement">
-        <span>Premium tile selection, now easier online</span>
+        <span>Curated surfaces · Premium showroom experience · Valayambattu</span>
         <a href={phoneHref}>Call {phoneDisplay}</a>
       </div>
 
