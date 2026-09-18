@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./sections.css";
+import "./responsive.css";
 
 const siteName = "New Royal Tiles";
 const description =
