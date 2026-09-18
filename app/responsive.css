@@ -83,6 +83,11 @@
     height: 38px;
   }
 
+  .brandLogoImage {
+    width: 44px;
+    height: 44px;
+  }
+
   .brandText strong {
     font-size: 15px;
   }
@@ -338,5 +343,24 @@
     width: 54px;
     padding: 0;
     justify-content: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .footerLogoLockup {
+    align-items: flex-start;
+  }
+
+  .footerLogoImage {
+    width: 92px;
+    height: 92px;
+  }
+
+  .footerLogoLockup strong {
+    font-size: 18px;
+  }
+
+  .heroImage {
+    object-position: 58% center;
   }
 }
