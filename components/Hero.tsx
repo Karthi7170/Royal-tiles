@@ -1,0 +1,79 @@
+import {
+  ArrowRight,
+  BadgeCheck,
+  ChevronRight,
+  Clock3,
+  Layers3,
+  MapPin,
+  MessageCircle,
+  ShieldCheck,
+  Star
+} from "lucide-react";
+import { directionsHref, makeWhatsapp } from "@/lib/site";
+
+export default function Hero() {
+  return (
+    <>
+      <section className="hero" id="top">
+        <img
+          className="heroImage"
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=2200&q=92"
+          alt="Premium modern interior featuring large-format tile surfaces"
+        />
+        <div className="heroOverlay" />
+
+        <div className="heroContent">
+          <div className="eyebrow light">NEW ROYAL TILES · VALAYAMBATTU</div>
+          <h1>
+            Find the surface
+            <br />
+            your space deserves.
+          </h1>
+          <p>
+            Premium tiles for floors, walls, bathrooms, kitchens and exteriors —
+            curated for real homes, budgets and everyday living.
+          </p>
+
+          <div className="heroButtons">
+            <a className="primaryButton heroCta" href="#collections">
+              Explore collections <ArrowRight size={18} />
+            </a>
+            <a
+              className="secondaryButton heroCta"
+              href={makeWhatsapp("Hi New Royal Tiles, I want recommendations for my space.")}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Get tile recommendations
+            </a>
+          </div>
+
+          <div className="heroMeta">
+            <span><Star size={16} fill="currentColor" /> 4.3 Google rating</span>
+            <span>210 reviews</span>
+            <span>தமிழ் · English assistance</span>
+          </div>
+        </div>
+
+        <div className="heroCard">
+          <span className="heroCardLabel">VISIT THE SHOWROOM</span>
+          <strong>See the finish. Feel the texture.</strong>
+          <p>M C Road, Valayampattu, Tamil Nadu 635751</p>
+          <div className="heroCardFooter">
+            <span><Clock3 size={16} /> Opens 9:30 AM</span>
+            <a href={directionsHref} target="_blank" rel="noreferrer">
+              Get directions <ChevronRight size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="trustStrip" aria-label="Showroom benefits">
+        <div><Layers3 /><span><strong>Wide selection</strong><small>Room to room choices</small></span></div>
+        <div><BadgeCheck /><span><strong>Guided buying</strong><small>Help comparing finishes</small></span></div>
+        <div><ShieldCheck /><span><strong>Practical advice</strong><small>Use, maintenance & suitability</small></span></div>
+        <div><MessageCircle /><span><strong>Fast assistance</strong><small>Call or WhatsApp directly</small></span></div>
+      </section>
+    </>
+  );
+}
