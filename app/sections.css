@@ -18,12 +18,14 @@
 
 .heroImage {
   object-fit: cover;
+  object-position: center center;
+  filter: saturate(0.92) contrast(1.06) brightness(0.86);
 }
 
 .heroOverlay {
   background:
-    linear-gradient(90deg, rgba(10, 10, 9, 0.82) 0%, rgba(10, 10, 9, 0.35) 55%, rgba(10, 10, 9, 0.2) 100%),
-    linear-gradient(0deg, rgba(10, 10, 9, 0.45), transparent 58%);
+    linear-gradient(90deg, rgba(13, 10, 7, 0.88) 0%, rgba(13, 10, 7, 0.56) 40%, rgba(13, 10, 7, 0.2) 74%, rgba(13, 10, 7, 0.12) 100%),
+    linear-gradient(0deg, rgba(10, 10, 9, 0.5), transparent 60%);
 }
 
 .heroContent {
@@ -89,6 +91,15 @@
   background: rgba(245, 242, 234, 0.95);
   color: var(--ink);
   backdrop-filter: blur(20px);
+}
+
+.heroCardLogo {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 28px rgba(45, 26, 14, 0.18);
 }
 
 .heroCardLabel {
