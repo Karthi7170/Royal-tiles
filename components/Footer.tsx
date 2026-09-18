@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import {
   directionsHref,
+  logoUrl,
   makeWhatsapp,
   phoneHref
 } from "@/lib/site";
@@ -10,11 +11,15 @@ export default function Footer() {
     <>
       <footer>
         <div className="footerBrand">
-          <a className="brand footerLogo" href="#top">
-            <span className="brandMark">NR</span>
-            <span className="brandText">
-              <strong>NEW ROYAL</strong>
-              <small>TILES</small>
+          <a className="footerLogoLockup" href="#top" aria-label="New Royal Tiles home">
+            <img
+              className="footerLogoImage"
+              src={logoUrl}
+              alt="Royal Tiles logo"
+            />
+            <span>
+              <strong>NEW ROYAL TILES</strong>
+              <small>VALAYAMBATTU · TAMIL NADU</small>
             </span>
           </a>
           <p>Premium surfaces. Practical guidance. Local service.</p>
