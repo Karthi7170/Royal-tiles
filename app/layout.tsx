@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { logoUrl, showroomImageUrl } from "@/lib/site";
 import "./globals.css";
 import "./sections.css";
 import "./responsive.css";
@@ -27,7 +28,17 @@ export const metadata: Metadata = {
     title: siteName + " | Premium Tiles Showroom",
     description,
     type: "website",
-    locale: "en_IN"
+    locale: "en_IN",
+    images: [
+      {
+        url: showroomImageUrl,
+        alt: "New Royal Tiles showroom in Valayampattu"
+      }
+    ]
+  },
+  icons: {
+    icon: logoUrl,
+    apple: logoUrl
   },
   robots: {
     index: true,
