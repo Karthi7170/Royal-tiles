@@ -30,13 +30,13 @@ export default function Hero() {
         <div className="heroContent">
           <div className="eyebrow light">NEW ROYAL TILES · VALAYAMBATTU</div>
           <h1>
-            Find the surface
+            Surfaces that define
             <br />
-            your space deserves.
+            remarkable spaces.
           </h1>
           <p>
-            Premium tiles for floors, walls, bathrooms, kitchens and exteriors —
-            curated for real homes, budgets and everyday living.
+            Discover refined tiles for floors, walls, bathrooms, kitchens and exteriors —
+            thoughtfully curated for elegant homes, lasting performance and everyday living.
           </p>
 
           <div className="heroButtons">
