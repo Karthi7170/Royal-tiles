@@ -55,8 +55,11 @@
 
 @media (max-width: 820px) {
   .announcement {
-    padding-inline: 18px;
+    min-height: 34px;
+    padding: 7px 18px;
     justify-content: center;
+    font-size: 8px;
+    letter-spacing: 0.12em;
   }
 
   .announcement > span {
@@ -64,18 +67,24 @@
   }
 
   .siteHeader {
-    height: 70px;
+    height: 74px;
     padding: 0 18px;
+    background: rgba(21, 11, 7, 0.97);
+    backdrop-filter: blur(24px) saturate(1.15);
   }
 
   .mobileMenu {
-    top: 70px;
-    padding-inline: 20px;
+    top: 74px;
+    padding: 24px 20px 30px;
   }
 
   .textAction,
   .headerActions .primaryButton {
     display: none;
+  }
+
+  .brand {
+    gap: 11px;
   }
 
   .brandMark {
@@ -84,49 +93,147 @@
   }
 
   .brandLogoImage {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
   }
 
   .brandText strong {
     font-size: 15px;
+    letter-spacing: 0.075em;
   }
 
+  .brandText small {
+    margin-top: 5px;
+    font-size: 8px;
+    letter-spacing: 0.42em;
+  }
+
+  .menuButton {
+    width: 46px;
+    height: 46px;
+    border-color: rgba(227, 199, 143, 0.34);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  /*
+   * Mobile hero is intentionally stacked instead of using cover-crop.
+   * The showroom photo keeps its complete natural frame on narrow screens,
+   * while the copy sits in a dedicated luxury panel below it.
+   */
   .hero {
-    min-height: 710px;
-    height: 82svh;
-    max-height: 760px;
+    display: block;
+    min-height: 0;
+    height: auto;
+    max-height: none;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 85% 48%, rgba(200, 161, 95, 0.11), transparent 32%),
+      #160b07;
+  }
+
+  .heroImage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+    filter: saturate(0.9) contrast(1.04) brightness(0.88) sepia(0.035);
+    transform: none;
   }
 
   .heroOverlay {
+    z-index: 1;
+    pointer-events: none;
     background:
-      linear-gradient(90deg, rgba(10, 10, 9, 0.72), rgba(10, 10, 9, 0.24)),
-      linear-gradient(0deg, rgba(10, 10, 9, 0.72), transparent 70%);
+      linear-gradient(
+        180deg,
+        rgba(16, 8, 5, 0.02) 0%,
+        rgba(16, 8, 5, 0.05) 30%,
+        rgba(16, 8, 5, 0.30) 48%,
+        rgba(16, 8, 5, 0.86) 67%,
+        #160b07 82%,
+        #160b07 100%
+      );
   }
 
   .heroContent {
+    position: relative;
+    z-index: 2;
     width: auto;
-    margin: 0 22px 54px;
+    margin: 0;
+    padding: 28px 22px 46px;
+    border-top: 1px solid rgba(227, 199, 143, 0.2);
+    background:
+      radial-gradient(circle at 92% 0%, rgba(211, 169, 96, 0.12), transparent 34%),
+      linear-gradient(180deg, rgba(33, 17, 10, 0.86), rgba(19, 9, 6, 0.96));
+    box-shadow: 0 -20px 60px rgba(8, 4, 2, 0.16);
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 14px;
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0.24em;
+    color: #dfbd7d;
   }
 
   .hero h1 {
-    font-size: clamp(50px, 15vw, 74px);
+    max-width: 620px;
+    font-size: clamp(44px, 12.8vw, 62px);
+    line-height: 0.94;
+    letter-spacing: -0.038em;
+    text-wrap: balance;
+  }
+
+  .hero h1 br {
+    display: none;
   }
 
   .heroContent > p {
+    max-width: 620px;
+    margin-top: 20px;
     font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 246, 231, 0.72);
   }
 
   .heroButtons {
+    margin-top: 26px;
     display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .heroButtons a {
     width: 100%;
   }
 
+  .heroCta {
+    min-height: 54px;
+  }
+
+  .heroButtons .primaryButton {
+    background: linear-gradient(135deg, #efd7a5 0%, #c89d57 100%);
+    color: #1b0e08;
+    border: 1px solid rgba(255, 239, 199, 0.42);
+    box-shadow: 0 12px 30px rgba(154, 105, 44, 0.2);
+  }
+
+  .heroButtons .secondaryButton {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(227, 199, 143, 0.28);
+    color: #f7e6c8;
+    backdrop-filter: blur(14px);
+  }
+
   .heroMeta {
-    gap: 8px 15px;
+    margin-top: 22px;
+    gap: 9px 16px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: rgba(255, 238, 211, 0.62);
   }
 
   .trustStrip {
@@ -136,9 +243,22 @@
 
   .trustStrip > div,
   .trustStrip > div:first-child {
+    min-height: 76px;
     padding: 16px 10px;
     border-right: 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(227, 199, 143, 0.13);
+  }
+
+  .trustStrip > div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .trustStrip strong {
+    font-size: 11px;
+  }
+
+  .trustStrip small {
+    font-size: 10px;
   }
 
   .section {
@@ -160,6 +280,7 @@
 
   .collectionGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .collectionCard {
@@ -187,6 +308,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: none;
+    gap: 16px;
   }
 
   .inspirationCard,
@@ -275,17 +397,124 @@
   }
 }
 
+@media (max-width: 620px) {
+  .siteHeader {
+    padding-inline: 16px;
+  }
+
+  .footerLogoLockup {
+    align-items: flex-start;
+  }
+
+  .footerLogoImage {
+    width: 92px;
+    height: 92px;
+  }
+
+  .footerLogoLockup strong {
+    font-size: 18px;
+  }
+
+  .heroImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .heroContent {
+    padding-inline: 20px;
+  }
+}
+
 @media (max-width: 480px) {
+  .announcement {
+    min-height: 32px;
+    padding-block: 6px;
+  }
+
+  .siteHeader {
+    height: 70px;
+    padding-inline: 15px;
+  }
+
+  .mobileMenu {
+    top: 70px;
+  }
+
+  .brandLogoImage {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brandText strong {
+    font-size: 14px;
+  }
+
+  .brandText small {
+    font-size: 7px;
+  }
+
+  .menuButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .heroContent {
+    padding: 24px 18px 40px;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 12px;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 12.4vw, 54px);
+    line-height: 0.96;
+  }
+
+  .heroContent > p {
+    margin-top: 17px;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .heroButtons {
+    margin-top: 22px;
+  }
+
+  .heroCta {
+    min-height: 52px;
+    font-size: 12px;
+  }
+
+  .heroMeta {
+    margin-top: 18px;
+  }
+
   .heroMeta span:nth-child(2) {
     display: none;
   }
 
   .trustStrip {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 12px;
   }
 
-  .trustStrip > div {
-    min-height: 58px;
+  .trustStrip > div,
+  .trustStrip > div:first-child {
+    min-height: 72px;
+    padding: 14px 8px;
+  }
+
+  .trustStrip svg {
+    width: 19px;
+  }
+
+  .section {
+    padding: 72px 18px;
   }
 
   .sectionHeading h2,
@@ -308,10 +537,19 @@
     display: none;
   }
 
+  .editorialCopy {
+    padding: 70px 18px;
+  }
+
   .inspirationCard,
   .inspirationCard.card1,
   .inspirationCard.card2 {
     min-height: 360px;
+  }
+
+  .calculatorSection,
+  .enquirySection {
+    padding: 70px 18px;
   }
 
   .calculatorCard {
@@ -321,6 +559,10 @@
   .areaResult {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .showroomDetails {
+    padding: 70px 18px;
   }
 
   .showroomActions {
@@ -346,21 +588,52 @@
   }
 }
 
-@media (max-width: 620px) {
-  .footerLogoLockup {
-    align-items: flex-start;
+@media (max-width: 390px) {
+  .brand {
+    gap: 9px;
   }
 
-  .footerLogoImage {
-    width: 92px;
-    height: 92px;
+  .brandLogoImage {
+    width: 41px;
+    height: 41px;
   }
 
-  .footerLogoLockup strong {
-    font-size: 18px;
+  .brandText strong {
+    font-size: 13px;
   }
 
+  .heroContent {
+    padding-inline: 16px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 48px);
+  }
+
+  .heroContent > p {
+    font-size: 13px;
+  }
+
+  .trustStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .trustStrip > div:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(227, 199, 143, 0.13);
+  }
+
+  .trustStrip > div:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 820px) and (orientation: landscape) {
   .heroImage {
-    object-position: 58% center;
+    max-height: 68svh;
+    object-fit: contain;
+  }
+
+  .heroContent {
+    padding-top: 24px;
   }
 }
