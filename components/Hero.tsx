@@ -4,15 +4,14 @@ import {
   ChevronRight,
   Clock3,
   Layers3,
-  MapPin,
   MessageCircle,
   ShieldCheck,
+  Sparkles,
   Star
 } from "lucide-react";
 import {
   directionsHref,
   logoUrl,
-  makeWhatsapp,
   showroomImageUrl
 } from "@/lib/site";
 
@@ -28,7 +27,7 @@ export default function Hero() {
         <div className="heroOverlay" />
 
         <div className="heroContent">
-          <div className="eyebrow light">NEW ROYAL TILES · VALAYAMBATTU</div>
+          <div className="eyebrow light">NEW ROYAL TILES · 4 SHOWROOMS</div>
           <h1>
             Surfaces that define
             <br />
@@ -36,33 +35,28 @@ export default function Hero() {
           </h1>
           <p>
             Discover refined tiles for floors, walls, bathrooms, kitchens and exteriors —
-            thoughtfully curated for elegant homes, lasting performance and everyday living.
+            then preview a tile direction in your own room before visiting the showroom.
           </p>
 
           <div className="heroButtons">
             <a className="primaryButton heroCta" href="#collections">
               Explore collections <ArrowRight size={18} />
             </a>
-            <a
-              className="secondaryButton heroCta"
-              href={makeWhatsapp("Hi New Royal Tiles, I want recommendations for my space.")}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Get tile recommendations
+            <a className="secondaryButton heroCta" href="#visualizer">
+              <Sparkles size={18} /> Visualize in your room
             </a>
           </div>
 
           <div className="heroMeta">
             <span><Star size={16} fill="currentColor" /> 4.3 Google rating</span>
-            <span>210 reviews</span>
+            <span>4 showroom locations</span>
             <span>தமிழ் · English assistance</span>
           </div>
         </div>
 
         <div className="heroCard">
           <img className="heroCardLogo" src={logoUrl} alt="" aria-hidden="true" />
-          <span className="heroCardLabel">OUR SHOWROOM</span>
+          <span className="heroCardLabel">FLAGSHIP SHOWROOM</span>
           <strong>See the finish. Feel the texture.</strong>
           <p>M C Road, Valayampattu, Tamil Nadu 635751</p>
           <div className="heroCardFooter">
@@ -76,9 +70,9 @@ export default function Hero() {
 
       <section className="trustStrip" aria-label="Showroom benefits">
         <div><Layers3 /><span><strong>Wide selection</strong><small>Room to room choices</small></span></div>
-        <div><BadgeCheck /><span><strong>Guided buying</strong><small>Help comparing finishes</small></span></div>
+        <div><Sparkles /><span><strong>Room visualizer</strong><small>Preview before you visit</small></span></div>
         <div><ShieldCheck /><span><strong>Practical advice</strong><small>Use, maintenance & suitability</small></span></div>
-        <div><MessageCircle /><span><strong>Fast assistance</strong><small>Call or WhatsApp directly</small></span></div>
+        <div><MessageCircle /><span><strong>4 local showrooms</strong><small>Visit the nearest branch</small></span></div>
       </section>
     </>
   );
