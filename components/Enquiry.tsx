@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { FormEvent } from "react";
+import { branches } from "@/lib/branches";
 import { makeWhatsapp } from "@/lib/site";
 
 export default function Enquiry() {
@@ -10,7 +11,9 @@ export default function Enquiry() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") || "");
     const phone = String(data.get("phone") || "");
+    const branch = String(data.get("branch") || "");
     const space = String(data.get("space") || "");
+    const area = String(data.get("area") || "");
     const message = String(data.get("message") || "");
 
     const text =
@@ -18,8 +21,12 @@ export default function Enquiry() {
       name +
       "\nPhone: " +
       phone +
+      "\nPreferred branch: " +
+      branch +
       "\nSpace: " +
       space +
+      "\nApprox area: " +
+      (area || "Not sure yet") +
       "\nRequirement: " +
       message;
 
@@ -27,14 +34,14 @@ export default function Enquiry() {
   }
 
   return (
-    <section className="enquirySection">
+    <section className="enquirySection" id="enquiry">
       <div className="enquiryIntro">
-        <div className="eyebrow light">QUICK ENQUIRY</div>
+        <div className="eyebrow light">QUICK QUOTE · 4 SHOWROOMS</div>
         <h2>Tell us what you are building.</h2>
         <p>
-          Send the basics now. The form opens WhatsApp with your requirement
-          already formatted, so you can continue the conversation directly with
-          the showroom.
+          Share the basics once and continue directly on WhatsApp. Add your preferred
+          branch and approximate area so the showroom team can respond with more
+          relevant options.
         </p>
       </div>
 
@@ -47,6 +54,28 @@ export default function Enquiry() {
           <label>
             <span>Phone number</span>
             <input name="phone" required inputMode="tel" placeholder="+91" />
+          </label>
+        </div>
+
+        <div className="formRow">
+          <label>
+            <span>Preferred branch</span>
+            <select name="branch" defaultValue="Valayambattu">
+              {branches.map((branch) => (
+                <option key={branch.slug} value={branch.name}>
+                  {branch.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span>Approx area</span>
+            <input
+              name="area"
+              inputMode="decimal"
+              placeholder="Example: 900 sq ft"
+            />
           </label>
         </div>
 
@@ -67,12 +96,16 @@ export default function Enquiry() {
           <textarea
             name="message"
             rows={4}
-            placeholder="Example: warm beige matte floor tiles, around 900 sq ft"
+            placeholder="Example: warm beige matte floor tiles, easy maintenance, premium finish"
           />
         </label>
 
+        <p className="branchSelectHint">
+          You can change the branch later on WhatsApp. No account or sign-up required.
+        </p>
+
         <button className="primaryButton formSubmit" type="submit">
-          Continue on WhatsApp <ArrowRight size={18} />
+          Get options on WhatsApp <ArrowRight size={18} />
         </button>
       </form>
     </section>
