@@ -13,6 +13,8 @@ import { makeWhatsapp } from "@/lib/site";
 const sampleRoom =
   "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=88";
 
+const MAX_UPLOAD_BYTES = 12 * 1024 * 1024;
+
 const tileLooks = [
   {
     name: "Calacatta Pearl",
@@ -53,11 +55,13 @@ const tileLooks = [
 
 export default function RoomVisualizer() {
   const [roomImage, setRoomImage] = useState(sampleRoom);
+  const [roomAspectRatio, setRoomAspectRatio] = useState(16 / 10);
   const [usingOwnPhoto, setUsingOwnPhoto] = useState(false);
   const [surface, setSurface] = useState<"full" | "floor" | "wall">("full");
   const [lookIndex, setLookIndex] = useState(0);
   const [opacity, setOpacity] = useState(54);
   const [scale, setScale] = useState(92);
+  const [uploadError, setUploadError] = useState("");
 
   const selectedLook = tileLooks[lookIndex];
 
@@ -65,24 +69,49 @@ export default function RoomVisualizer() {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    setUploadError("");
+
+    if (!file.type.startsWith("image/")) {
+      setUploadError("Please upload an image file.");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > MAX_UPLOAD_BYTES) {
+      setUploadError("Please choose an image smaller than 12 MB.");
+      event.target.value = "";
+      return;
+    }
+
     const reader = new FileReader();
+    reader.onerror = () => setUploadError("We could not read that image. Please try another file.");
     reader.onload = () => {
-      if (typeof reader.result === "string") {
-        setRoomImage(reader.result);
+      if (typeof reader.result !== "string") return;
+
+      const preview = new window.Image();
+      preview.onerror = () => setUploadError("That image could not be previewed.");
+      preview.onload = () => {
+        if (preview.naturalWidth > 0 && preview.naturalHeight > 0) {
+          setRoomAspectRatio(preview.naturalWidth / preview.naturalHeight);
+        }
+        setRoomImage(reader.result as string);
         setUsingOwnPhoto(true);
         setSurface("full");
-      }
+      };
+      preview.src = reader.result;
     };
     reader.readAsDataURL(file);
   }
 
   function resetSample() {
     setRoomImage(sampleRoom);
+    setRoomAspectRatio(16 / 10);
     setUsingOwnPhoto(false);
     setSurface("full");
     setLookIndex(0);
     setOpacity(54);
     setScale(92);
+    setUploadError("");
   }
 
   const overlayStyle: CSSProperties = {
@@ -94,6 +123,9 @@ export default function RoomVisualizer() {
         : `${scale}px ${scale}px`,
     opacity: opacity / 100
   };
+
+  const surfaceLabel =
+    surface === "full" ? "full-room preview" : surface;
 
   return (
     <section className="visualizerSection" id="visualizer">
@@ -122,7 +154,7 @@ export default function RoomVisualizer() {
       </div>
 
       <div className="visualizerStudio">
-        <div className="visualizerCanvas">
+        <div className="visualizerCanvas" style={{ aspectRatio: roomAspectRatio }}>
           <img src={roomImage} alt="Room preview for tile visualizer" />
           <div
             className={`visualizerSurface ${surface}`}
@@ -138,13 +170,16 @@ export default function RoomVisualizer() {
           <div className="visualizerControlBlock">
             <span className="controlLabel">Your space</span>
             <div className="uploadRow">
-              <label className="visualizerUpload">
+              <label className="visualizerUpload" htmlFor="room-photo-input">
                 <Camera size={17} />
                 Take / upload photo
                 <input
+                  id="room-photo-input"
+                  className="visuallyHiddenInput"
                   type="file"
                   accept="image/*"
                   capture="environment"
+                  aria-describedby="visualizer-upload-help"
                   onChange={handlePhoto}
                 />
               </label>
@@ -152,13 +187,18 @@ export default function RoomVisualizer() {
                 <RotateCcw size={16} /> Reset
               </button>
             </div>
+            <p className="visualizerUploadHelp" id="visualizer-upload-help">
+              JPG, PNG, HEIC or other browser-supported image formats up to 12 MB.
+            </p>
+            {uploadError ? <p className="visualizerError" role="alert">{uploadError}</p> : null}
           </div>
 
           <div className="visualizerControlBlock">
             <span className="controlLabel">Apply to</span>
-            <div className="segmentedControl">
+            <div className="segmentedControl" role="group" aria-label="Tile preview surface">
               <button
                 type="button"
+                aria-pressed={surface === "full"}
                 className={surface === "full" ? "active" : ""}
                 onClick={() => setSurface("full")}
               >
@@ -166,6 +206,7 @@ export default function RoomVisualizer() {
               </button>
               <button
                 type="button"
+                aria-pressed={surface === "floor"}
                 className={surface === "floor" ? "active" : ""}
                 onClick={() => setSurface("floor")}
               >
@@ -173,6 +214,7 @@ export default function RoomVisualizer() {
               </button>
               <button
                 type="button"
+                aria-pressed={surface === "wall"}
                 className={surface === "wall" ? "active" : ""}
                 onClick={() => setSurface("wall")}
               >
@@ -188,6 +230,7 @@ export default function RoomVisualizer() {
                 <button
                   key={look.name}
                   type="button"
+                  aria-pressed={index === lookIndex}
                   className={index === lookIndex ? "tileLook active" : "tileLook"}
                   onClick={() => setLookIndex(index)}
                   aria-label={"Preview " + look.name}
@@ -216,6 +259,7 @@ export default function RoomVisualizer() {
                 min="28"
                 max="78"
                 value={opacity}
+                aria-label="Preview strength"
                 onChange={(event) => setOpacity(Number(event.target.value))}
               />
             </label>
@@ -227,6 +271,7 @@ export default function RoomVisualizer() {
                 min="56"
                 max="150"
                 value={scale}
+                aria-label="Tile scale"
                 onChange={(event) => setScale(Number(event.target.value))}
               />
             </label>
@@ -241,7 +286,7 @@ export default function RoomVisualizer() {
                   " " +
                   selectedLook.family +
                   " direction for my " +
-                  surface +
+                  surfaceLabel +
                   ". Please show me similar options."
               )}
               target="_blank"
@@ -249,9 +294,16 @@ export default function RoomVisualizer() {
             >
               <MessageCircle size={18} /> Show me similar tiles
             </a>
-            <label className="outlineButton visualizerAltUpload">
+            <label className="outlineButton visualizerAltUpload" htmlFor="room-photo-change-input">
               <ImagePlus size={17} /> Change room photo
-              <input type="file" accept="image/*" onChange={handlePhoto} />
+              <input
+                id="room-photo-change-input"
+                className="visuallyHiddenInput"
+                type="file"
+                accept="image/*"
+                aria-describedby="visualizer-upload-help"
+                onChange={handlePhoto}
+              />
             </label>
           </div>
         </div>
