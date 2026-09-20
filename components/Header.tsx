@@ -13,10 +13,12 @@ import {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <>
       <div className="announcement">
-        <span>Curated surfaces · Premium showroom experience · Valayambattu</span>
+        <span>4 showrooms · Valayambattu · Vellore · Gudiyatham · Pernambut</span>
         <a href={phoneHref}>Call {phoneDisplay}</a>
       </div>
 
@@ -35,14 +37,15 @@ export default function Header() {
 
         <nav className="desktopNav" aria-label="Main navigation">
           <a href="#collections">Collections</a>
+          <a href="#visualizer">Visualizer</a>
           <a href="#inspiration">Inspiration</a>
-          <a href="#calculator">Tile calculator</a>
-          <a href="#showroom">Showroom</a>
+          <a href="#calculator">Calculator</a>
+          <a href="#branches">Branches</a>
         </nav>
 
         <div className="headerActions">
-          <a className="textAction" href={directionsHref} target="_blank" rel="noreferrer">
-            <MapPin size={17} /> Directions
+          <a className="textAction" href="#branches">
+            <MapPin size={17} /> 4 showrooms
           </a>
           <a
             className="primaryButton small"
@@ -55,7 +58,8 @@ export default function Header() {
           <button
             className="menuButton"
             type="button"
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X /> : <Menu />}
@@ -64,10 +68,12 @@ export default function Header() {
 
         {menuOpen && (
           <div className="mobileMenu">
-            <a href="#collections" onClick={() => setMenuOpen(false)}>Collections</a>
-            <a href="#inspiration" onClick={() => setMenuOpen(false)}>Inspiration</a>
-            <a href="#calculator" onClick={() => setMenuOpen(false)}>Tile calculator</a>
-            <a href="#showroom" onClick={() => setMenuOpen(false)}>Showroom</a>
+            <a href="#collections" onClick={closeMenu}>Collections</a>
+            <a href="#visualizer" onClick={closeMenu}>Room visualizer</a>
+            <a href="#inspiration" onClick={closeMenu}>Inspiration</a>
+            <a href="#calculator" onClick={closeMenu}>Tile calculator</a>
+            <a href="#branches" onClick={closeMenu}>Our 4 branches</a>
+            <a href={directionsHref} target="_blank" rel="noreferrer">Main showroom directions</a>
             <a href={phoneHref}>Call showroom</a>
           </div>
         )}
