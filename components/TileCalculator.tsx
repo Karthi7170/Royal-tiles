@@ -54,7 +54,7 @@ export default function TileCalculator() {
               step="0.1"
               inputMode="decimal"
               value={length}
-              onChange={(event) => setLength(event.target.value)}
+              onInput={(event) => setLength(event.currentTarget.value)}
               placeholder="e.g. 15"
             />
           </label>
@@ -67,7 +67,7 @@ export default function TileCalculator() {
               step="0.1"
               inputMode="decimal"
               value={width}
-              onChange={(event) => setWidth(event.target.value)}
+              onInput={(event) => setWidth(event.currentTarget.value)}
               placeholder="e.g. 12"
             />
           </label>
