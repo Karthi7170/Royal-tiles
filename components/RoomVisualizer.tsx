@@ -69,7 +69,8 @@ export default function RoomVisualizer() {
     reader.onload = () => {
       if (typeof reader.result === "string") {
         setRoomImage(reader.result);
-        setUsingOwnPhoto(true);\n        setSurface("full");
+        setUsingOwnPhoto(true);
+        setSurface("full");
       }
     };
     reader.readAsDataURL(file);
@@ -87,7 +88,10 @@ export default function RoomVisualizer() {
   const overlayStyle: CSSProperties = {
     backgroundColor: selectedLook.color,
     backgroundImage: selectedLook.pattern,
-    backgroundSize:\n      surface === "wall"\n        ? `${Math.round(scale * 0.85)}px ${Math.round(scale * 0.85)}px`\n        : `${scale}px ${scale}px`,
+    backgroundSize:
+      surface === "wall"
+        ? `${Math.round(scale * 0.85)}px ${Math.round(scale * 0.85)}px`
+        : `${scale}px ${scale}px`,
     opacity: opacity / 100
   };
 
@@ -97,9 +101,9 @@ export default function RoomVisualizer() {
         <div className="eyebrow light">SMART ROOM VISUALIZER · BETA</div>
         <h2>See a tile direction in your own space before you visit.</h2>
         <p>
-          Take a room photo or upload one from your phone, choose a surface and try
-          different tile looks. This browser-based preview runs on your device and is
-          designed to help you shortlist faster.
+          Take a room photo or upload one from your phone, choose how much of the
+          image to cover and try different tile looks. This browser-based preview
+          runs on your device and is designed to help you shortlist faster.
         </p>
 
         <div className="visualizerSteps">
