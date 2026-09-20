@@ -54,7 +54,7 @@ const tileLooks = [
 export default function RoomVisualizer() {
   const [roomImage, setRoomImage] = useState(sampleRoom);
   const [usingOwnPhoto, setUsingOwnPhoto] = useState(false);
-  const [surface, setSurface] = useState<"floor" | "wall">("floor");
+  const [surface, setSurface] = useState<"full" | "floor" | "wall">("full");
   const [lookIndex, setLookIndex] = useState(0);
   const [opacity, setOpacity] = useState(54);
   const [scale, setScale] = useState(92);
@@ -69,7 +69,7 @@ export default function RoomVisualizer() {
     reader.onload = () => {
       if (typeof reader.result === "string") {
         setRoomImage(reader.result);
-        setUsingOwnPhoto(true);
+        setUsingOwnPhoto(true);\n        setSurface("full");
       }
     };
     reader.readAsDataURL(file);
@@ -78,7 +78,7 @@ export default function RoomVisualizer() {
   function resetSample() {
     setRoomImage(sampleRoom);
     setUsingOwnPhoto(false);
-    setSurface("floor");
+    setSurface("full");
     setLookIndex(0);
     setOpacity(54);
     setScale(92);
@@ -87,7 +87,7 @@ export default function RoomVisualizer() {
   const overlayStyle: CSSProperties = {
     backgroundColor: selectedLook.color,
     backgroundImage: selectedLook.pattern,
-    backgroundSize: surface === "floor" ? `${scale}px ${scale}px` : `${Math.round(scale * 0.85)}px ${Math.round(scale * 0.85)}px`,
+    backgroundSize:\n      surface === "wall"\n        ? `${Math.round(scale * 0.85)}px ${Math.round(scale * 0.85)}px`\n        : `${scale}px ${scale}px`,
     opacity: opacity / 100
   };
 
@@ -104,7 +104,7 @@ export default function RoomVisualizer() {
 
         <div className="visualizerSteps">
           <div><span>01</span><strong>Upload or take a room photo</strong></div>
-          <div><span>02</span><strong>Choose floor or wall</strong></div>
+          <div><span>02</span><strong>Choose full image, floor or wall</strong></div>
           <div><span>03</span><strong>Try a finish and share it</strong></div>
         </div>
 
@@ -121,7 +121,7 @@ export default function RoomVisualizer() {
         <div className="visualizerCanvas">
           <img src={roomImage} alt="Room preview for tile visualizer" />
           <div
-            className={surface === "floor" ? "visualizerSurface floor" : "visualizerSurface wall"}
+            className={`visualizerSurface ${surface}`}
             style={overlayStyle}
             aria-hidden="true"
           />
@@ -153,6 +153,13 @@ export default function RoomVisualizer() {
           <div className="visualizerControlBlock">
             <span className="controlLabel">Apply to</span>
             <div className="segmentedControl">
+              <button
+                type="button"
+                className={surface === "full" ? "active" : ""}
+                onClick={() => setSurface("full")}
+              >
+                Full
+              </button>
               <button
                 type="button"
                 className={surface === "floor" ? "active" : ""}
