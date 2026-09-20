@@ -28,7 +28,7 @@ export default function Enquiry() {
       "\nApprox area: " +
       (area || "Not sure yet") +
       "\nRequirement: " +
-      message;
+      (message || "Please suggest suitable options.");
 
     window.open(makeWhatsapp(text), "_blank", "noopener,noreferrer");
   }
@@ -49,11 +49,29 @@ export default function Enquiry() {
         <div className="formRow">
           <label>
             <span>Your name</span>
-            <input name="name" required placeholder="Name" />
+            <input
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              minLength={2}
+              maxLength={80}
+              placeholder="Name"
+            />
           </label>
           <label>
             <span>Phone number</span>
-            <input name="phone" required inputMode="tel" placeholder="+91" />
+            <input
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              required
+              inputMode="tel"
+              pattern="[+]?[0-9 ()-]{7,20}"
+              maxLength={20}
+              title="Enter a valid phone number using digits, spaces, brackets, + or -."
+              placeholder="+91"
+            />
           </label>
         </div>
 
@@ -70,11 +88,15 @@ export default function Enquiry() {
           </label>
 
           <label>
-            <span>Approx area</span>
+            <span>Approx area (sq ft)</span>
             <input
               name="area"
+              type="number"
               inputMode="decimal"
-              placeholder="Example: 900 sq ft"
+              min="1"
+              max="1000000"
+              step="0.1"
+              placeholder="Example: 900"
             />
           </label>
         </div>
@@ -96,6 +118,7 @@ export default function Enquiry() {
           <textarea
             name="message"
             rows={4}
+            maxLength={500}
             placeholder="Example: warm beige matte floor tiles, easy maintenance, premium finish"
           />
         </label>
