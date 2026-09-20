@@ -67,7 +67,7 @@ export default function Enquiry() {
               autoComplete="tel"
               required
               inputMode="tel"
-              pattern="[+]?[0-9 ()-]{7,20}"
+              pattern={"[+]?[0-9 ()\\-]{7,20}"}
               maxLength={20}
               title="Enter a valid phone number using digits, spaces, brackets, + or -."
               placeholder="+91"
