@@ -1,0 +1,697 @@
+/* ===== INTERACTIVE EXPERIENCE LAYER ===== */
+
+.visualizerSection {
+  padding: 110px 6vw;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(48px, 7vw, 110px);
+  align-items: start;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(210, 165, 92, 0.15), transparent 25%),
+    linear-gradient(145deg, #160b07 0%, #27140c 52%, #100806 100%);
+  color: #fff7e9;
+}
+
+.visualizerIntro {
+  position: sticky;
+  top: 122px;
+}
+
+.visualizerIntro h2 {
+  margin: 0;
+  max-width: 620px;
+  font-family: "Iowan Old Style", Baskerville, Georgia, "Times New Roman", serif;
+  font-size: clamp(46px, 5vw, 78px);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.038em;
+}
+
+.visualizerIntro > p {
+  max-width: 590px;
+  margin: 24px 0 0;
+  color: rgba(255, 242, 222, 0.6);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.visualizerSteps {
+  margin-top: 34px;
+  border-top: 1px solid rgba(227, 199, 143, 0.16);
+}
+
+.visualizerSteps > div {
+  padding: 17px 0;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(227, 199, 143, 0.16);
+}
+
+.visualizerSteps span {
+  color: #d7b474;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+
+.visualizerSteps strong {
+  color: rgba(255, 247, 233, 0.87);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.visualizerNote {
+  margin-top: 26px;
+  padding: 17px 18px;
+  display: flex;
+  gap: 12px;
+  border: 1px solid rgba(227, 199, 143, 0.17);
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(255, 242, 222, 0.54);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.visualizerNote svg {
+  flex: 0 0 auto;
+  color: #d8b474;
+}
+
+.visualizerStudio {
+  padding: clamp(12px, 1.8vw, 20px);
+  background:
+    linear-gradient(145deg, rgba(255, 250, 242, 0.98), rgba(231, 215, 193, 0.98));
+  border: 1px solid rgba(221, 185, 123, 0.32);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 8px rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+}
+
+.visualizerCanvas {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #b9afa3;
+  isolation: isolate;
+}
+
+.visualizerCanvas > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visualizerCanvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 0 -100px 130px rgba(19, 9, 5, 0.13);
+}
+
+.visualizerSurface {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-blend-mode: multiply, normal;
+  mix-blend-mode: multiply;
+  transition:
+    clip-path 0.35s ease,
+    opacity 0.25s ease,
+    background-size 0.25s ease;
+}
+
+.visualizerSurface.floor {
+  clip-path: polygon(0 58%, 100% 58%, 100% 100%, 0 100%);
+  transform: perspective(800px) rotateX(2deg);
+  transform-origin: bottom;
+}
+
+.visualizerSurface.wall {
+  clip-path: polygon(0 0, 100% 0, 100% 61%, 0 61%);
+}
+
+.visualizerBadge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 5;
+  padding: 9px 12px;
+  background: rgba(19, 10, 7, 0.82);
+  border: 1px solid rgba(232, 202, 149, 0.25);
+  color: #f7e8cc;
+  backdrop-filter: blur(14px);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.visualizerControls {
+  padding: clamp(22px, 3vw, 34px) 4px 4px;
+}
+
+.visualizerControlBlock + .visualizerControlBlock {
+  margin-top: 24px;
+}
+
+.controlLabel {
+  display: block;
+  margin-bottom: 10px;
+  color: #7a6757;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.uploadRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.visualizerUpload,
+.visualizerReset,
+.visualizerAltUpload {
+  min-height: 46px;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(80, 48, 28, 0.18);
+  background: rgba(255, 255, 255, 0.46);
+  color: #2c180f;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.visualizerUpload {
+  background: #24120b;
+  border-color: #24120b;
+  color: #f7e6c8;
+}
+
+.visualizerUpload input,
+.visualizerAltUpload input {
+  display: none;
+}
+
+.visualizerReset {
+  appearance: none;
+}
+
+.segmentedControl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(80, 48, 28, 0.16);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.segmentedControl button {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #76675b;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.segmentedControl button.active {
+  background: linear-gradient(135deg, #2b160d 0%, #160b07 100%);
+  color: #f2d6a4;
+  box-shadow: 0 8px 22px rgba(40, 19, 9, 0.15);
+}
+
+.tileLookGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tileLook {
+  min-width: 0;
+  padding: 7px;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(80, 48, 28, 0.15);
+  background: rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  text-align: left;
+}
+
+.tileLook.active {
+  border-color: rgba(144, 98, 42, 0.68);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 8px 22px rgba(60, 34, 18, 0.11);
+}
+
+.tileLookSwatch {
+  width: 100%;
+  aspect-ratio: 1.1;
+  display: block;
+  background-size: 34px 34px;
+  border: 1px solid rgba(49, 28, 17, 0.12);
+}
+
+.tileLook > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.tileLook strong {
+  overflow: hidden;
+  color: #2b190f;
+  font-size: 9px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tileLook small {
+  color: #8d7b6d;
+  font-size: 8px;
+}
+
+.visualizerRangeGrid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.visualizerRangeGrid label {
+  display: grid;
+  gap: 9px;
+}
+
+.visualizerRangeGrid label > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #78695d;
+  font-size: 10px;
+}
+
+.visualizerRangeGrid label strong {
+  color: #442617;
+}
+
+.visualizerRangeGrid input[type="range"] {
+  width: 100%;
+  accent-color: #9d7236;
+}
+
+.visualizerActions {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.visualizerActions .primaryButton {
+  min-height: 52px;
+}
+
+.visualizerAltUpload {
+  min-height: 52px;
+  border-color: rgba(89, 54, 31, 0.3);
+  background: transparent;
+}
+
+/* ===== BRANCH FINDER ===== */
+
+.branchesSection {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(193, 144, 72, 0.1), transparent 27%),
+    linear-gradient(180deg, #f5ede2 0%, #e9dbc9 100%);
+}
+
+.branchesHeading {
+  align-items: end;
+}
+
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.branchCard {
+  min-height: 430px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 252, 247, 0.64);
+  border: 1px solid rgba(88, 53, 31, 0.15);
+  box-shadow: 0 16px 40px rgba(63, 35, 18, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.branchCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(157, 114, 54, 0.35);
+  box-shadow: 0 24px 54px rgba(63, 35, 18, 0.12);
+}
+
+.branchCard.featured {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(216, 174, 99, 0.13), transparent 28%),
+    linear-gradient(155deg, #2a160e 0%, #140a07 100%);
+  border-color: rgba(225, 190, 126, 0.25);
+  color: #fff6e8;
+}
+
+.branchTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #a27942;
+}
+
+.branchIndex {
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+
+.branchCard.featured .branchTop {
+  color: #d7b474;
+}
+
+.branchCopy {
+  margin-top: 64px;
+}
+
+.branchCopy > span {
+  color: #9c7a57;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.branchCard.featured .branchCopy > span {
+  color: #d7b474;
+}
+
+.branchCopy h3 {
+  margin: 8px 0 2px;
+  font-family: "Iowan Old Style", Baskerville, Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+.branchCopy small {
+  color: #8b7a6c;
+  font-size: 10px;
+}
+
+.branchCard.featured .branchCopy small {
+  color: rgba(255, 241, 217, 0.46);
+}
+
+.branchCopy p {
+  margin: 22px 0 0;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 9px;
+  color: #77675a;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.branchCopy p svg {
+  margin-top: 1px;
+  color: #a47842;
+}
+
+.branchCard.featured .branchCopy p {
+  color: rgba(255, 241, 217, 0.58);
+}
+
+.branchCard.featured .branchCopy p svg {
+  color: #d7b474;
+}
+
+.branchActions {
+  margin-top: auto;
+  padding-top: 28px;
+  display: grid;
+  gap: 8px;
+}
+
+.branchPrimary,
+.branchSecondary {
+  min-height: 44px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(89, 54, 31, 0.2);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.branchPrimary {
+  background: #24120b;
+  border-color: #24120b;
+  color: #f6dfb8;
+}
+
+.branchSecondary {
+  color: #4e3422;
+}
+
+.branchCard.featured .branchPrimary {
+  background: linear-gradient(135deg, #e7ca91 0%, #b9853f 100%);
+  border-color: rgba(255, 234, 190, 0.28);
+  color: #1a0d08;
+}
+
+.branchCard.featured .branchSecondary {
+  border-color: rgba(227, 199, 143, 0.22);
+  color: #f0d8ad;
+}
+
+.branchHelp {
+  margin-top: 18px;
+  padding: 25px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: rgba(255, 252, 247, 0.54);
+  border: 1px solid rgba(88, 53, 31, 0.14);
+}
+
+.branchHelp > div {
+  display: grid;
+  gap: 6px;
+}
+
+.branchHelp span {
+  color: #9e7a50;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.branchHelp strong {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* ===== SMALL UX ENHANCEMENTS ===== */
+
+.enquiryForm .branchSelectHint {
+  color: rgba(255, 241, 217, 0.42);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.footerBranchList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+}
+
+.footerBranchList a {
+  position: relative;
+}
+
+.footerBranchList a:not(:last-child)::after {
+  content: "·";
+  position: absolute;
+  right: -9px;
+  color: rgba(216, 183, 123, 0.48);
+}
+
+@media (max-width: 1180px) {
+  .visualizerSection {
+    grid-template-columns: 1fr;
+  }
+
+  .visualizerIntro {
+    position: static;
+  }
+
+  .visualizerIntro > p {
+    max-width: 720px;
+  }
+
+  .branchGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .visualizerSection {
+    padding: 78px 20px;
+    gap: 38px;
+  }
+
+  .visualizerIntro h2 {
+    font-size: 48px;
+  }
+
+  .visualizerStudio {
+    padding: 10px;
+  }
+
+  .visualizerCanvas {
+    aspect-ratio: 4 / 3;
+  }
+
+  .visualizerControls {
+    padding: 22px 4px 4px;
+  }
+
+  .tileLookGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .visualizerRangeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .visualizerActions {
+    grid-template-columns: 1fr;
+  }
+
+  .visualizerAltUpload {
+    width: 100%;
+  }
+
+  .branchGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .branchCard {
+    min-height: 390px;
+  }
+
+  .branchCopy {
+    margin-top: 42px;
+  }
+
+  .branchHelp {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .branchHelp .primaryButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .visualizerSection {
+    padding: 70px 16px;
+  }
+
+  .visualizerIntro h2 {
+    font-size: 42px;
+  }
+
+  .visualizerCanvas {
+    aspect-ratio: 1 / 1;
+  }
+
+  .visualizerBadge {
+    left: 10px;
+    bottom: 10px;
+    font-size: 9px;
+  }
+
+  .uploadRow {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .visualizerUpload,
+  .visualizerReset {
+    width: 100%;
+  }
+
+  .tileLookGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tileLook:last-child {
+    grid-column: 1 / 3;
+  }
+
+  .visualizerSteps > div {
+    grid-template-columns: 38px 1fr;
+  }
+
+  .branchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .branchCard {
+    min-height: 360px;
+    padding: 22px;
+  }
+
+  .branchCopy {
+    margin-top: 38px;
+  }
+
+  .branchCopy h3 {
+    font-size: 32px;
+  }
+
+  .branchHelp {
+    padding: 22px;
+  }
+
+  .footerBranchList {
+    display: grid;
+    gap: 8px;
+  }
+
+  .footerBranchList a::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visualizerSurface,
+  .branchCard {
+    transition: none;
+  }
+}
