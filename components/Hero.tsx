@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {
   ArrowRight,
-  BadgeCheck,
   ChevronRight,
   Clock3,
   Layers3,
