@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { inspirations } from "@/lib/data";
 import { makeWhatsapp } from "@/lib/site";
@@ -7,10 +8,11 @@ export default function Inspiration() {
     <>
       <section className="editorial">
         <div className="editorialImageWrap">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1600607688960-e095ff83135c?auto=format&fit=crop&w=1600&q=90"
             alt="Refined tiled interior with warm neutral finishes"
-            loading="lazy"
+            fill
+            sizes="(max-width: 1100px) 100vw, 54vw"
           />
           <div className="editorialBadge">
             <span>01</span>
@@ -72,7 +74,12 @@ export default function Inspiration() {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={item.image} alt={item.title + " room inspiration"} loading="lazy" />
+              <Image
+                src={item.image}
+                alt={item.title + " room inspiration"}
+                fill
+                sizes="(max-width: 820px) 100vw, 40vw"
+              />
               <div className="inspirationCaption">
                 <span>{item.note}</span>
                 <strong>{item.title}</strong>
