@@ -23,6 +23,8 @@ export default function Hero() {
           className="heroImage"
           src={showroomImageUrl}
           alt="New Royal Tiles showroom exterior in Valayampattu, Tamil Nadu"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="heroOverlay" />
 
