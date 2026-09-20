@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
+import { branchDirections, branches } from "@/lib/branches";
 import {
-  directionsHref,
   logoUrl,
   makeWhatsapp,
   phoneHref
@@ -19,43 +19,64 @@ export default function Footer() {
             />
             <span>
               <strong>NEW ROYAL TILES</strong>
-              <small>VALAYAMBATTU · TAMIL NADU</small>
+              <small>4 SHOWROOMS · NORTH TAMIL NADU</small>
             </span>
           </a>
-          <p>Premium surfaces. Practical guidance. Local service.</p>
+          <p>Premium surfaces. Smart tools. Local showroom guidance.</p>
         </div>
 
         <div className="footerLinks">
           <div>
             <span>Explore</span>
             <a href="#collections">Collections</a>
+            <a href="#visualizer">Room visualizer</a>
             <a href="#inspiration">Inspiration</a>
             <a href="#calculator">Tile calculator</a>
           </div>
 
           <div>
-            <span>Visit</span>
-            <a href={directionsHref} target="_blank" rel="noreferrer">Google Maps</a>
-            <a href={phoneHref}>Call showroom</a>
+            <span>Plan & contact</span>
+            <a href="#branches">Find a branch</a>
+            <a href={phoneHref}>Call main showroom</a>
             <a
-              href={makeWhatsapp("Hi New Royal Tiles")}
+              href={makeWhatsapp("Hi New Royal Tiles, I would like help choosing tiles.")}
               target="_blank"
               rel="noreferrer"
             >
               WhatsApp
             </a>
+            <a
+              href={makeWhatsapp("Hi New Royal Tiles, please send me your latest tile catalogue and collections.")}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Request catalogue
+            </a>
           </div>
 
           <div>
-            <span>Location</span>
-            <p>M C Road, Valayampattu<br />Tamil Nadu 635751</p>
-            <p>Opening time: 9:30 AM</p>
+            <span>Our showrooms</span>
+            <div className="footerBranchList">
+              {branches.map((branch) => (
+                <a
+                  key={branch.slug}
+                  href={branchDirections(branch)}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {branch.name}
+                </a>
+              ))}
+            </div>
+            <p>
+              Valayambattu · Vellore · Gudiyatham · Pernambut
+            </p>
           </div>
         </div>
 
         <div className="footerBottom">
           <span>© {new Date().getFullYear()} New Royal Tiles. All rights reserved.</span>
-          <span>Designed for mobile-first local discovery.</span>
+          <span>Mobile-first tile discovery with showroom support.</span>
         </div>
       </footer>
 
