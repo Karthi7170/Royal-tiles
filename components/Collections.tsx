@@ -1,14 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { collections } from "@/lib/data";
 import { makeWhatsapp } from "@/lib/site";
 
+const filters = ["All", "Floor", "Wall", "Spaces"];
+
 export default function Collections() {
   const [filter, setFilter] = useState("All");
   const filtered =
     filter === "All" ? collections : collections.filter((item) => item.tag === filter);
+
+  const activeTabId = "collection-tab-" + filter.toLowerCase();
 
   return (
     <section className="section collectionsSection" id="collections">
@@ -24,10 +29,14 @@ export default function Collections() {
       </div>
 
       <div className="filterRow" role="tablist" aria-label="Filter tile collections">
-        {["All", "Floor", "Wall", "Spaces"].map((item) => (
+        {filters.map((item) => (
           <button
             key={item}
+            id={"collection-tab-" + item.toLowerCase()}
             type="button"
+            role="tab"
+            aria-selected={filter === item}
+            aria-controls="collection-panel"
             className={filter === item ? "filter active" : "filter"}
             onClick={() => setFilter(item)}
           >
@@ -36,10 +45,21 @@ export default function Collections() {
         ))}
       </div>
 
-      <div className="collectionGrid">
+      <div
+        className="collectionGrid"
+        id="collection-panel"
+        role="tabpanel"
+        aria-labelledby={activeTabId}
+        tabIndex={0}
+      >
         {filtered.map((item) => (
           <article className="collectionCard" key={item.title}>
-            <img src={item.image} alt={item.title + " tile inspiration"} loading="lazy" />
+            <Image
+              src={item.image}
+              alt={item.title + " tile inspiration"}
+              fill
+              sizes="(max-width: 820px) 100vw, (max-width: 1100px) 50vw, 33vw"
+            />
             <div className="collectionShade" />
             <div className="collectionContent">
               <span>{item.subtitle}</span>
