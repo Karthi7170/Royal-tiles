@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowRight,
   BadgeCheck,
@@ -19,12 +20,15 @@ export default function Hero() {
   return (
     <>
       <section className="hero" id="top">
-        <img
+        <Image
           className="heroImage"
           src={showroomImageUrl}
           alt="New Royal Tiles showroom exterior in Valayampattu, Tamil Nadu"
-          fetchPriority="high"
-          decoding="async"
+          width={3840}
+          height={2160}
+          priority
+          quality={90}
+          sizes="100vw"
         />
         <div className="heroOverlay" />
 
