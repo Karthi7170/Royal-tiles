@@ -48,6 +48,10 @@ export default function TileCalculator() {
           <label>
             <span>Length (ft)</span>
             <input
+              type="number"
+              min="0.1"
+              max="100000"
+              step="0.1"
               inputMode="decimal"
               value={length}
               onChange={(event) => setLength(event.target.value)}
@@ -57,6 +61,10 @@ export default function TileCalculator() {
           <label>
             <span>Width (ft)</span>
             <input
+              type="number"
+              min="0.1"
+              max="100000"
+              step="0.1"
               inputMode="decimal"
               value={width}
               onChange={(event) => setWidth(event.target.value)}
