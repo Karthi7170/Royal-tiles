@@ -8,9 +8,10 @@ export default function Proof() {
         <div className="eyebrow">LOCAL TRUST</div>
         <div className="ratingNumber">4.3</div>
         <div className="stars" aria-label="4.3 out of 5 stars">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star key={star} size={21} fill="currentColor" />
+          {[1, 2, 3, 4].map((star) => (
+            <Star key={star} size={21} fill="currentColor" aria-hidden="true" />
           ))}
+          <Star size={21} fill="none" aria-hidden="true" />
         </div>
         <strong>210 Google reviews</strong>
         <p>
