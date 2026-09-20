@@ -126,6 +126,11 @@
     background-size 0.25s ease;
 }
 
+.visualizerSurface.full {
+  clip-path: inset(0);
+  transform: none;
+}
+
 .visualizerSurface.floor {
   clip-path: polygon(0 58%, 100% 58%, 100% 100%, 0 100%);
   transform: perspective(800px) rotateX(2deg);
@@ -209,7 +214,7 @@
 
 .segmentedControl {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   border: 1px solid rgba(80, 48, 28, 0.16);
   background: rgba(255, 255, 255, 0.34);
 }
