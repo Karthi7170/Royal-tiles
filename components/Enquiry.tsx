@@ -67,10 +67,14 @@ export default function Enquiry() {
               autoComplete="tel"
               required
               inputMode="tel"
-              pattern={"[+]?[0-9 ()\\-]{7,20}"}
               maxLength={20}
               title="Enter a valid phone number using digits, spaces, brackets, + or -."
               placeholder="+91"
+              onInput={(event) => {
+                const input = event.currentTarget;
+                const validPhone = /^\+?[0-9 ()-]{7,20}$/.test(input.value.trim());
+                input.setCustomValidity(validPhone ? "" : "Enter a valid phone number.");
+              }}
             />
           </label>
         </div>
