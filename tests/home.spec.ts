@@ -36,8 +36,8 @@ test("homepage modules and internal navigation are present", async ({ page }) =>
 test("collections filter exposes correct cards and tab semantics", async ({ page }) => {
   await openHome(page);
 
-  const allTab = page.getByRole("tab", { name: "All" });
-  const wallTab = page.getByRole("tab", { name: "Wall" });
+  const allTab = page.getByRole("tab", { name: "All", exact: true });
+  const wallTab = page.getByRole("tab", { name: "Wall", exact: true });
 
   await expect(allTab).toHaveAttribute("aria-selected", "true");
   await expect(page.locator(".collectionCard")).toHaveCount(6);
@@ -93,7 +93,7 @@ test("visualizer rejects oversized uploads before reading them", async ({ page }
     buffer: oversized
   });
 
-  await expect(page.getByRole("alert")).toContainText("smaller than 12 MB");
+  await expect(page.locator(".visualizerError")).toContainText("smaller than 12 MB");
 });
 
 test("tile calculator calculates area with wastage and validates numeric bounds", async ({ page }) => {
@@ -151,7 +151,7 @@ test("SEO canonical robots sitemap and structured data are available", async ({ 
 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://royaltiles.vercel.app/"
+    "https://royaltiles.vercel.app"
   );
   await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /premium tiles/i);
 
