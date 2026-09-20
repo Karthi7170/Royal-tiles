@@ -50,7 +50,8 @@ img {
 }
 
 main {
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .announcement {
@@ -125,8 +126,8 @@ main {
 
 .brandText small {
   margin-top: 5px;
-  font-size: 9px;
-  letter-spacing: 0.42em;
+  font-size: 10px;
+  letter-spacing: 0.36em;
   color: var(--muted);
 }
 
@@ -329,8 +330,8 @@ footer {
 
 .footerBrand p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.48);
-  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
 }
 
 .footerLinks {
@@ -358,8 +359,8 @@ footer {
 .footerLinks a,
 .footerLinks p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
   line-height: 1.7;
 }
 
@@ -369,8 +370,8 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  color: rgba(255, 255, 255, 0.36);
-  font-size: 10px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 11px;
 }
 
 .floatingWhatsapp {
@@ -555,8 +556,8 @@ body {
 
 .eyebrow {
   color: var(--accent-dark);
-  font-size: 10px;
-  letter-spacing: 0.28em;
+  font-size: 11px;
+  letter-spacing: 0.24em;
 }
 
 .eyebrow.light {
@@ -628,4 +629,22 @@ footer {
   border: 1px solid rgba(227, 199, 143, 0.34);
   color: #f8ead2;
   box-shadow: 0 16px 42px rgba(28, 13, 7, 0.34);
+}
+
+
+/* ===== ACCESSIBILITY & KEYBOARD QA ===== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #e3c78f;
+  outline-offset: 3px;
+}
+
+@supports not (overflow: clip) {
+  main {
+    overflow-x: visible;
+  }
 }
